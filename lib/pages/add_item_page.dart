@@ -31,30 +31,48 @@ class _AddItemPageState extends State<AddItemPage> {
   double? _convertedAmount;
 
   final Map<String, String> _currencyWithFlags = {
-    'USD': '🇺🇸 USD',
-    'EUR': '🇪🇺 EUR',
-    'GBP': '🇬🇧 GBP',
-    'SGD': '🇸🇬 SGD',
-    'AUD': '🇦🇺 AUD',
-    'CAD': '🇨🇦 CAD',
-    'JPY': '🇯🇵 JPY',
-    'INR': '🇮🇳 INR',
-    'THB': '🇹🇭 THB',
-    'CNY': '🇨🇳 CNY',
-    'KRW': '🇰🇷 KRW',
-    'IDR': '🇮🇩 IDR',
-    'PHP': '🇵🇭 PHP',
-    'VND': '🇻🇳 VND',
-    'NZD': '🇳🇿 NZD',
-    'CHF': '🇨🇭 CHF',
-    'HKD': '🇭🇰 HKD',
-    'SEK': '🇸🇪 SEK',
-    'MYR': '🇲🇾 MYR',
-    'BDT': '🇧🇩 BDT',
+    'USD': '🇺🇸 USD', 'EUR': '🇪🇺 EUR', 'GBP': '🇬🇧 GBP', 'SGD': '🇸🇬 SGD',
+    'AUD': '🇦🇺 AUD', 'CAD': '🇨🇦 CAD', 'JPY': '🇯🇵 JPY', 'INR': '🇮🇳 INR',
+    'THB': '🇹🇭 THB', 'CNY': '🇨🇳 CNY', 'KRW': '🇰🇷 KRW', 'IDR': '🇮🇩 IDR',
+    'PHP': '🇵🇭 PHP', 'VND': '🇻🇳 VND', 'NZD': '🇳🇿 NZD', 'CHF': '🇨🇭 CHF',
+    'HKD': '🇭🇰 HKD', 'SEK': '🇸🇪 SEK', 'MYR': '🇲🇾 MYR', 'BDT': '🇧🇩 BDT',
   };
 
-  Future<void> _pickImage() async {
-    final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future<void> _showImageSourcePicker() async {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.photo),
+                title: const Text('Choose from Gallery'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.gallery);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text('Take a Photo'),
+                onTap: () {
+                  Navigator.pop(context);
+                  _pickImage(ImageSource.camera);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final picked = await ImagePicker().pickImage(source: source);
     if (picked != null) {
       final file = File(picked.path);
       setState(() => _image = file);
@@ -242,9 +260,9 @@ class _AddItemPageState extends State<AddItemPage> {
             _buildImageCard(),
             const SizedBox(height: 16),
             ElevatedButton.icon(
-              onPressed: _pickImage,
-              icon: const Icon(Icons.upload),
-              label: Text("Upload Image", style: GoogleFonts.poppins()),
+              onPressed: _showImageSourcePicker,
+              icon: const Icon(Icons.add_a_photo),
+              label: Text("Upload or Take Photo", style: GoogleFonts.poppins()),
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFFCDDC3),
                 foregroundColor: Colors.black,
