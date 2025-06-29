@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "876634575038",
+    "project_id": "stashtrack-37ece",
+    "storage_bucket": "stashtrack-37ece.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876634575038:android:8a69220cb95067c8230eef",
+        "android_client_info": {
+          "package_name": "com.example.stash_track"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAybBaVeB2R72RLz8WIkMiV-Bf82_eCFR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876634575038:android:223fd3189cfc432f230eef",
+        "android_client_info": {
+          "package_name": "inti.edu.stash_track"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAybBaVeB2R72RLz8WIkMiV-Bf82_eCFR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
